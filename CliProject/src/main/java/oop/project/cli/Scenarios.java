@@ -11,6 +11,7 @@ public class Scenarios {
     public Scenarios() {
 
         Validator intValidator = new Main.IntegerValidator();
+        Validator doubleValidator = new Main.DoubleValidator();
         ErrorHandler typeErrorHandler = new Main.TypeErrorHandler();
 
         List<Argument> arguments = new ArrayList<>();
@@ -22,12 +23,38 @@ public class Scenarios {
             int num2 = Integer.parseInt(params.get(1));
             System.out.println("Result: " + (num1 + num2));
         };
+        Consumer<List<String>> subFunction = params -> {
+            int num1 = Integer.parseInt(params.get(0));
+            int num2 = Integer.parseInt(params.get(1));
+            System.out.println("Result: " + (num1 - num2));
+        };
+        Consumer<List<String>> sqrtFunction = params -> {
+            double num1 = Integer.parseInt(params.get(0));
+            System.out.println("Result: " + (Math.sqrt(num1)));
+        };
+        Consumer<List<String>> divFunction = params -> {
+            int num1 = Integer.parseInt(params.get(0));
+            int num2 = Integer.parseInt(params.get(1));
+            System.out.println("Result: " + (num1 / num2));
+        };
+        Consumer<List<String>> multFunction = params -> {
+            int num1 = Integer.parseInt(params.get(0));
+            int num2 = Integer.parseInt(params.get(1));
+            System.out.println("Result: " + (num1 * num2));
+        };
 
         Command addCommand = new Command("add", arguments, addFunction);
+        Command subCommand = new Command("sub", arguments, subFunction);
+        Command sqrtCommand = new Command("add", arguments, addFunction);
+        Command divCommand = new Command("sub", arguments, subFunction);
+        Command multCommand = new Command("mult", arguments, multFunction);
 
         this.manager = new CommandManager();
         manager.registerCommand("add", addCommand);
-
+        manager.registerCommand("sub", subCommand);
+        manager.registerCommand("sqrt", sqrtCommand);
+        manager.registerCommand("div", divCommand);
+        manager.registerCommand("mult", multCommand);
     }
 
     public CommandManager getManager() {
