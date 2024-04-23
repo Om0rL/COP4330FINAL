@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="oop.project.cli.ScenariosTests$Add" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-04-22T23:41:01" hostname="DESKTOP-VR896RF" time="0.032">
+<testsuite name="oop.project.cli.ScenariosTests$Add" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-04-23T00:46:36" hostname="DESKTOP-VR896RF" time="0.037">
   <properties/>
-  <testcase name="[1] Add, (add[1,2]), oop.project.cli.ParsedCommand@58eadc02" classname="oop.project.cli.ScenariosTests$Add" time="0.023"/>
-  <testcase name="[2] Missing Argument, add 1, null" classname="oop.project.cli.ScenariosTests$Add" time="0.003"/>
+  <testcase name="[1] Add, (add[1,2]), oop.project.cli.ParsedCommand@58eadc02" classname="oop.project.cli.ScenariosTests$Add" time="0.026"/>
+  <testcase name="[2] Missing Argument, add 1, null" classname="oop.project.cli.ScenariosTests$Add" time="0.002"/>
   <testcase name="[3] Extraneous Argument, add 1 2 3, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
   <testcase name="[4] Not A Number, add one two, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
-  <testcase name="[5] Not An Integer, add 1.0 2.0, null" classname="oop.project.cli.ScenariosTests$Add" time="0.0"/>
+  <testcase name="[5] Not An Integer, add 1.0 2.0, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -10,9 +10,9 @@ public class Scenarios {
 
     public Scenarios() {
 
-        Validator intValidator = new Main.IntegerValidator();
-        Validator doubleValidator = new Main.DoubleValidator();
-        ErrorHandler typeErrorHandler = new Main.TypeErrorHandler();
+        Validator intValidator = new IntegerValidator();
+        Validator doubleValidator = new DoubleValidator();
+        ErrorHandler typeErrorHandler = new TypeErrorHandler();
 
         List<Argument> arguments = new ArrayList<>();
         arguments.add(new Argument("first", Argument.Type.INTEGER, intValidator, typeErrorHandler));
@@ -55,6 +55,7 @@ public class Scenarios {
         manager.registerCommand("sqrt", sqrtCommand);
         manager.registerCommand("div", divCommand);
         manager.registerCommand("mult", multCommand);
+
     }
 
     public CommandManager getManager() {
@@ -67,6 +68,18 @@ public class Scenarios {
         public boolean validate(String value) {
             try {
                 Integer.parseInt(value);
+                return true;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+    }
+
+    public static class DoubleValidator implements Validator {
+        @Override
+        public boolean validate(String value) {
+            try {
+                Double.parseDouble(value);
                 return true;
             } catch (NumberFormatException e) {
                 return false;
