@@ -45,8 +45,8 @@ public class Scenarios {
 
         Command addCommand = new Command("add", arguments, addFunction);
         Command subCommand = new Command("sub", arguments, subFunction);
-        Command sqrtCommand = new Command("add", arguments, addFunction);
-        Command divCommand = new Command("sub", arguments, subFunction);
+        Command sqrtCommand = new Command("sqrt", arguments, addFunction);
+        Command divCommand = new Command("div", arguments, subFunction);
         Command multCommand = new Command("mult", arguments, multFunction);
 
         this.manager = new CommandManager();
