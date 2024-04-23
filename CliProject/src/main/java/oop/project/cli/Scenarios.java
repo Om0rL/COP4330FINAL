@@ -24,8 +24,8 @@ public class Scenarios {
         argumentsInt.add(new Argument("secondInt", Argument.Type.INTEGER, intValidator, typeErrorHandler));
 
         List<Argument> argumentsDou = new ArrayList<>();
-        argumentsDou.add(new Argument("firstDou", Argument.Type.DOUBLE, intValidator, typeErrorHandler));
-        argumentsDou.add(new Argument("secondDou", Argument.Type.DOUBLE, intValidator, typeErrorHandler));
+        argumentsDou.add(new Argument("firstDou", Argument.Type.DOUBLE, doubleValidator, typeErrorHandler));
+        argumentsDou.add(new Argument("secondDou", Argument.Type.DOUBLE, doubleValidator, typeErrorHandler));
 
         List<Argument> dateArgs = new ArrayList<>();
         dateArgs.add(new Argument("date", Argument.Type.STRING, dateValidator, typeErrorHandler));
@@ -109,7 +109,7 @@ public class Scenarios {
         }
     }
 
-    public class DateValidator implements Validator {
+    public static class DateValidator implements Validator {
         private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         @Override
@@ -133,7 +133,7 @@ public class Scenarios {
     public static class TypeErrorHandler implements ErrorHandler {
         @Override
         public void handleError(String error) {
-            System.err.println("Type Error: Expected but received '" + error + "'");
+            throw new RuntimeException("Type Error: Expected but received '" + error + "'");
         }
     }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="oop.project.cli.ScenariosTests$Div" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-04-23T02:32:49" hostname="DESKTOP-VR896RF" time="0.006">
+  <properties/>
+  <testcase name="[1] Sub, (sub[1,2]), oop.project.cli.ParsedCommand@3ddfce63" classname="oop.project.cli.ScenariosTests$Div" time="0.001"/>
+  <testcase name="[2] Missing Argument, sub 1, null" classname="oop.project.cli.ScenariosTests$Div" time="0.001"/>
+  <testcase name="[3] Extraneous Argument,  1 2 3, null" classname="oop.project.cli.ScenariosTests$Div" time="0.001"/>
+  <testcase name="[4] Not A Number, add one two, null" classname="oop.project.cli.ScenariosTests$Div" time="0.001"/>
+  <testcase name="[5] Not An Integer, add 1.0 2.0, null" classname="oop.project.cli.ScenariosTests$Div" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

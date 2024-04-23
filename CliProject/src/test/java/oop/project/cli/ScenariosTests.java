@@ -30,10 +30,10 @@ public class ScenariosTests {
                                     new Token(Token.Type.NUMBER, "1"),
                                     new Token(Token.Type.NUMBER, "2")
                             ))),
-                    Arguments.of("Missing Argument", "add 1", null),
-                    Arguments.of("Extraneous Argument", "add 1 2 3", null),
-                    Arguments.of("Not A Number", "add one two", null),
-                    Arguments.of("Not An Integer", "add 1.0 2.0", null)
+                    Arguments.of("Missing Argument", "(add[1])", null),
+                    Arguments.of("Extraneous Argument", "(add[1,2,3])", null),
+                    Arguments.of("Not A Number", "(add[one,two])", null),
+                    Arguments.of("Not An Integer", "(add[1.0,2.0])", null)
             );
         }
 
@@ -55,8 +55,8 @@ public class ScenariosTests {
                                     new Token(Token.Type.NUMBER, "1"),
                                     new Token(Token.Type.NUMBER, "2")
                             ))),
-                    Arguments.of("Missing Argument", "add 1", null),
-                    Arguments.of("Extraneous Argument", "add 1 2 3", null),
+                    Arguments.of("Missing Argument", "sub 1", null),
+                    Arguments.of("Extraneous Argument", " 1 2 3", null),
                     Arguments.of("Not A Number", "add one two", null),
                     Arguments.of("Not An Integer", "add 1.0 2.0", null)
             );
