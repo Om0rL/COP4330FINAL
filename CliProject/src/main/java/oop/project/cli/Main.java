@@ -21,6 +21,7 @@ public class Main {
             }
             try {
                 var ast = RetrieveCommand.parse(input);
+                //System.out.println(ast.getTokens());
                 scenarios.getManager().executeCommand(ast);
             } catch (ParseException e) {
                 System.out.println("Error parsing input: " + e.getMessage());

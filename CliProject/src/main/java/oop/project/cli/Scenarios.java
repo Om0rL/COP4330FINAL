@@ -28,7 +28,7 @@ public class Scenarios {
         argumentsDou.add(new Argument("secondDou", Argument.Type.DOUBLE, intValidator, typeErrorHandler));
 
         List<Argument> dateArgs = new ArrayList<>();
-        argumentsDou.add(new Argument("date", Argument.Type.STRING, intValidator, typeErrorHandler));
+        dateArgs.add(new Argument("date", Argument.Type.STRING, dateValidator, typeErrorHandler));
 
 
 
@@ -59,7 +59,8 @@ public class Scenarios {
 
         Consumer<List<String>> dateFunction = params -> {
             DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            System.out.println("Result: " + LocalDate.parse(params.get(0), DATE_FORMATTER));
+            var date = LocalDate.parse(params.get(0), DATE_FORMATTER);
+            System.out.println("Result: " + date);
         };
 
         Command addCommand = new Command("add", argumentsInt, addFunction);
@@ -67,6 +68,7 @@ public class Scenarios {
         Command sqrtCommand = new Command("sqrt", argumentsInt, sqrtFunction);
         Command divCommand = new Command("div", argumentsDou, divFunction);
         Command multCommand = new Command("mult", argumentsInt, multFunction);
+        Command dateCommand = new Command("date", dateArgs, dateFunction);
 
         this.manager = new CommandManager();
         manager.registerCommand("add", addCommand);
@@ -74,6 +76,7 @@ public class Scenarios {
         manager.registerCommand("sqrt", sqrtCommand);
         manager.registerCommand("div", divCommand);
         manager.registerCommand("mult", multCommand);
+        manager.registerCommand("date", dateCommand);
 
     }
 
@@ -130,7 +133,7 @@ public class Scenarios {
     public static class TypeErrorHandler implements ErrorHandler {
         @Override
         public void handleError(String error) {
-            System.err.println("Type Error: Expected an integer but received '" + error + "'");
+            System.err.println("Type Error: Expected but received '" + error + "'");
         }
     }
 }

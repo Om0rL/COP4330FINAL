@@ -28,6 +28,7 @@ public class Parser {
             if (match(Token.Type.NUMBER) || match(Token.Type.IDENTIFIER)) {
                 // Add the token that was just matched to the parsed command's token list
                 parsedCommand.addToken(tokens.get(-1)); // -1 to get the last matched token
+                //System.out.println(tokens.get(-1));
             } else {
                 throw new ParseException("Expected an identifier or number as an argument");
             }
