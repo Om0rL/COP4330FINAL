@@ -37,6 +37,8 @@ public class Lexer {
         while (match("[0-9]")) {}
         if (match('.', "[0-9]")) {
             while (match("[0-9]")) {}
+        } else if (!peek("[,\\]]")){
+            return lexIdentifier();
         }
         return chars.emit(Token.Type.NUMBER);
     }

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Scenarios {
 
     CommandManager manager;
@@ -12,11 +16,21 @@ public class Scenarios {
 
         Validator intValidator = new IntegerValidator();
         Validator doubleValidator = new DoubleValidator();
+        Validator dateValidator = new DateValidator();
         ErrorHandler typeErrorHandler = new TypeErrorHandler();
 
-        List<Argument> arguments = new ArrayList<>();
-        arguments.add(new Argument("first", Argument.Type.INTEGER, intValidator, typeErrorHandler));
-        arguments.add(new Argument("second", Argument.Type.INTEGER, intValidator, typeErrorHandler));
+        List<Argument> argumentsInt = new ArrayList<>();
+        argumentsInt.add(new Argument("firstInt", Argument.Type.INTEGER, intValidator, typeErrorHandler));
+        argumentsInt.add(new Argument("secondInt", Argument.Type.INTEGER, intValidator, typeErrorHandler));
+
+        List<Argument> argumentsDou = new ArrayList<>();
+        argumentsDou.add(new Argument("firstDou", Argument.Type.DOUBLE, intValidator, typeErrorHandler));
+        argumentsDou.add(new Argument("secondDou", Argument.Type.DOUBLE, intValidator, typeErrorHandler));
+
+        List<Argument> dateArgs = new ArrayList<>();
+        argumentsDou.add(new Argument("date", Argument.Type.STRING, intValidator, typeErrorHandler));
+
+
 
         Consumer<List<String>> addFunction = params -> {
             int num1 = Integer.parseInt(params.get(0));
@@ -43,11 +57,16 @@ public class Scenarios {
             System.out.println("Result: " + (num1 * num2));
         };
 
-        Command addCommand = new Command("add", arguments, addFunction);
-        Command subCommand = new Command("sub", arguments, subFunction);
-        Command sqrtCommand = new Command("sqrt", arguments, addFunction);
-        Command divCommand = new Command("div", arguments, subFunction);
-        Command multCommand = new Command("mult", arguments, multFunction);
+        Consumer<List<String>> dateFunction = params -> {
+            DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            System.out.println("Result: " + LocalDate.parse(params.get(0), DATE_FORMATTER));
+        };
+
+        Command addCommand = new Command("add", argumentsInt, addFunction);
+        Command subCommand = new Command("sub", argumentsInt, subFunction);
+        Command sqrtCommand = new Command("sqrt", argumentsInt, sqrtFunction);
+        Command divCommand = new Command("div", argumentsDou, divFunction);
+        Command multCommand = new Command("mult", argumentsInt, multFunction);
 
         this.manager = new CommandManager();
         manager.registerCommand("add", addCommand);
@@ -82,6 +101,26 @@ public class Scenarios {
                 Double.parseDouble(value);
                 return true;
             } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+    }
+
+    public class DateValidator implements Validator {
+        private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        @Override
+        public boolean validate(String value) {
+            if (value == null) {
+                return false;
+            }
+            if (!value.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                return false;
+            }
+            try {
+                LocalDate.parse(value, DATE_FORMATTER);
+                return true;
+            } catch (DateTimeParseException e) {
                 return false;
             }
         }
